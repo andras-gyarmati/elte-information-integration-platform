@@ -28,13 +28,18 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          # npm run test --if-present
+          npm run test --if-present
+
+      - name: Create Archive of Build Output
+        run: |
+          cd dist # Replace 'dist' with your actual build output directory
+          zip -r ../build.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: .
+          path: build.zip
 
   deploy:
     runs-on: windows-latest
@@ -48,6 +53,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
+
+      - name: Unzip build artifact
+        run: unzip build.zip -d .
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2

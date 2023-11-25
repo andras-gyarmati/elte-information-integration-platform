@@ -28,7 +28,14 @@ public class Program
         builder.Services.AddMediatR(typeof(Program));
 
         // Add DbContext
-        builder.Services.AddSqlServer<AnyuDbContext>("ConnectionString");
+        var connectionString = builder.Configuration.GetConnectionString("AnyuDb");
+        builder.Services.AddDbContext<AnyuDbContext>(options =>
+            options.UseSqlServer(connectionString, sqlServerOptions =>
+                sqlServerOptions.EnableRetryOnFailure(
+                    maxRetryCount: 5, // Maximum number of retries
+                    maxRetryDelay: TimeSpan.FromSeconds(10), // Maximum delay between retries
+                    errorNumbersToAdd: null))); // SQL error numbers to consider as transient
+
 
         // Add Routing
         builder.Services.AddRouting(options => { options.LowercaseUrls = true; });

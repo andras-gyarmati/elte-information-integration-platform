@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ANYU.Api.Controllers;
 
 [ApiController]
-[Authorize]
+// [Authorize]
+[AllowAnonymous]
 [Route("[controller]")]
 public class UsersController : Controller
 {

@@ -35,6 +35,7 @@ public class UserService : IRequestHandler<GetUsersRequest, PagedListResult<User
             query = query.ApplyPaging(request.Pagination);
             var usersResponse = query.Select(user => new UserResponse
                 {
+                    Name = user.Name,
                     Email = user.Email
                 })
                 .ToList();

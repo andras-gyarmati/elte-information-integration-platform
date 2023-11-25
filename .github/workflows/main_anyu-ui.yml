@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    environment: Production
     defaults:
       run:
         working-directory: anyu-ui

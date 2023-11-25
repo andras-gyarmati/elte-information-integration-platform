@@ -65,10 +65,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2DDD94E853A9409485FCF0E0420B4FF5 }}
           package: .
-
-      - name: Set Startup Command
-        run: |
-          az webapp config set --resource-group "ANYU" --name "anyu-ui" --startup-file "pm2 serve /home/site/wwwroot --no-daemon --spa"
-        env:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-

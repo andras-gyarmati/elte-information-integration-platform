@@ -1,6 +1,6 @@
 export const environment = {
-  name: '#{EnvironmentName}#',
-  authRedirectUri: '#{AuthRedirectUri}#',
-  apiUrl: '#{ApiUrl}#',
-  uiUrl: '#{UiUrl}#'
+  name: 'prod',
+  authRedirectUri: 'https://anyu-ui.azurewebsites.net/authenticated',
+  apiUrl: 'https://anyu-api.azurewebsites.net',
+  uiUrl: 'https://anyu-ui.azurewebsites.net'
 };

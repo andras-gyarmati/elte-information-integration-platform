@@ -25,16 +25,6 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Replace environment placeholders
-        run: |
-          $envFile = "src/environments/environment.prod.ts"
-          $content = Get-Content $envFile -Raw
-          $content = $content -replace "#\{EnvironmentName\}#", "$env:ENVIRONMENT_NAME"
-          $content = $content -replace "#\{AuthRedirectUri\}#", "$env:AUTH_REDIRECT_URI"
-          $content = $content -replace "#\{ApiUrl\}#", "$env:API_URL"
-          $content = $content -replace "#\{UiUrl\}#", "$env:UI_URL"
-          Set-Content $envFile -Value $content
-          
       - name: npm install, build, and test
         run: |
           npm install

@@ -28,11 +28,16 @@ jobs:
         run: |
           $envFile = "src/environments/environment.prod.ts"
           $content = Get-Content $envFile -Raw
-          $content = $content -replace "#\{EnvironmentName\}#", "${{ vars.ENVIRONMENT_NAME }}"
-          $content = $content -replace "#\{AuthRedirectUri\}#", "${{ vars.AUTH_REDIRECT_URI }}"
-          $content = $content -replace "#\{ApiUrl\}#", "${{ vars.API_URL }}"
-          $content = $content -replace "#\{UiUrl\}#", "${{ vars.UI_URL }}"
+          $content = $content -replace "#\{EnvironmentName\}#", "${{ env.ENVIRONMENT_NAME }}"
+          $content = $content -replace "#\{AuthRedirectUri\}#", "${{ env.AUTH_REDIRECT_URI }}"
+          $content = $content -replace "#\{ApiUrl\}#", "${{ env.API_URL }}"
+          $content = $content -replace "#\{UiUrl\}#", "${{ env.UI_URL }}"
           Set-Content $envFile -Value $content
+        env:
+          ENVIRONMENT_NAME: ${{ env.ENVIRONMENT_NAME }}
+          AUTH_REDIRECT_URI: ${{ env.AUTH_REDIRECT_URI }}
+          API_URL: ${{ env.API_URL }}
+          UI_URL: ${{ env.UI_URL }}
 
       - name: npm install, build, and test
         run: |

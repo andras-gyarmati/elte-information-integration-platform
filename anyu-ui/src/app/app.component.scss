@@ -1,0 +1,24 @@
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0; /* required */
+  z-index: 2;
+  box-shadow: 0 0 8px 3px rgb(0 0 0 / 5%);
+}
+
+.nav {
+  background-color: white;
+}
+
+.header-image {
+  //height: 40px;
+  cursor: pointer;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.router-container {
+  margin: 1rem;
+}

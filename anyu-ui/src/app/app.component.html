@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<div class='header'>
+  <mat-toolbar class='nav'>
+<!--    <img class='header-image' ngSrc='logo.svg' alt='anyu-logo' (click)='logoClicked()'>-->
+    <span class="header-image" (click)="logoClicked()">ANYU</span>
+    <span class='header-spacer'></span>
+  </mat-toolbar>
+</div>
+<div class="router-container">
+  <router-outlet></router-outlet>
+</div>

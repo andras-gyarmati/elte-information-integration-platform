@@ -16,7 +16,7 @@ public class GetUsersRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // courses
-public class GetCoursesRequest : IRequest<PagedListResult<UserResponse>>
+public class GetCoursesRequest : IRequest<PagedListResult<CourseResponse>>
 {
     public string Filtering { get; set; }
 
@@ -26,7 +26,7 @@ public class GetCoursesRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // course instances
-public class GetCourseInstancesRequest : IRequest<PagedListResult<UserResponse>>
+public class GetCourseInstancesRequest : IRequest<PagedListResult<CourseInstanceResponse>>
 {
     public string Filtering { get; set; }
 
@@ -36,7 +36,7 @@ public class GetCourseInstancesRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // lecture labs
-public class GetLectureLabsRequest : IRequest<PagedListResult<UserResponse>>
+public class GetLectureLabsRequest : IRequest<PagedListResult<LectureLabResponse>>
 {
     public string Filtering { get; set; }
 
@@ -46,7 +46,7 @@ public class GetLectureLabsRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // lecture lab prerequisites
-public class GetLectureLabPrerequisitesRequest : IRequest<PagedListResult<UserResponse>>
+public class GetLectureLabPrerequisitesRequest : IRequest<PagedListResult<LectureLabPrerequisiteResponse>>
 {
     public string Filtering { get; set; }
 
@@ -56,7 +56,7 @@ public class GetLectureLabPrerequisitesRequest : IRequest<PagedListResult<UserRe
 }
 
 // passing requirements
-public class GetPassingRequirementsRequest : IRequest<PagedListResult<UserResponse>>
+public class GetPassingRequirementsRequest : IRequest<PagedListResult<PassingRequirementResponse>>
 {
     public string Filtering { get; set; }
 
@@ -66,7 +66,7 @@ public class GetPassingRequirementsRequest : IRequest<PagedListResult<UserRespon
 }
 
 // semesters
-public class GetSemestersRequest : IRequest<PagedListResult<UserResponse>>
+public class GetSemestersRequest : IRequest<PagedListResult<SemesterResponse>>
 {
     public string Filtering { get; set; }
 
@@ -76,7 +76,7 @@ public class GetSemestersRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // universities
-public class GetUniversitiesRequest : IRequest<PagedListResult<UserResponse>>
+public class GetUniversitiesRequest : IRequest<PagedListResult<UniversityResponse>>
 {
     public string Filtering { get; set; }
 
@@ -86,7 +86,7 @@ public class GetUniversitiesRequest : IRequest<PagedListResult<UserResponse>>
 }
 
 // university requirements
-public class GetUniversityRequirementsRequest : IRequest<PagedListResult<UserResponse>>
+public class GetUniversityRequirementsRequest : IRequest<PagedListResult<UniversityRequirementResponse>>
 {
     public string Filtering { get; set; }
 

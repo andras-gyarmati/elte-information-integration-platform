@@ -13,8 +13,8 @@ public class UniversityRequirementCourse
     public int CourseId { get; set; }
 
     [ForeignKey("RequirementId")]
-    public UniversityRequirement UniversityRequirement { get; set; } = null!;
+    public UniversityRequirement UniversityRequirement { get; set; }
 
     [ForeignKey("CourseId")]
-    public Course Course { get; set; } = null!;
+    public Course Course { get; set; }
 }

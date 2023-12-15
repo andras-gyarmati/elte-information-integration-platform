@@ -11,22 +11,22 @@ public class UserCourseData
     public int CourseInstanceId { get; set; }
 
     [MaxLength(100)]
-    public string Grade { get; set; } = null!;
+    public string Grade { get; set; }
 
     [ForeignKey("UserId")]
-    public User User { get; set; } = null!;
+    public User User { get; set; }
 
     [ForeignKey("CourseInstanceId")]
-    public CourseInstance CourseInstance { get; set; } = null!;
+    public CourseInstance CourseInstance { get; set; }
 
-    public List<UserCompletedRequirement> CompletedRequirements { get; set; } = null!;
+    public List<UserCompletedRequirement> CompletedRequirements { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]
     public string CreatedBy { get; set; }
 
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [MaxLength(255)]
     public string ModifiedBy { get; set; }

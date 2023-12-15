@@ -14,19 +14,19 @@ public class UniversityRequirement
     public int CreditsRequired { get; set; }
 
     [MaxLength(1000)]
-    public string Description { get; set; } = null!;
+    public string Description { get; set; }
 
     [ForeignKey("UniversityId")]
-    public University University { get; set; } = null!;
+    public University University { get; set; }
 
-    public List<UniversityRequirementCourse> MandatoryCourses { get; set; } = null!;
+    public List<UniversityRequirementCourse> MandatoryCourses { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]
     public string CreatedBy { get; set; }
 
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [MaxLength(255)]
     public string ModifiedBy { get; set; }

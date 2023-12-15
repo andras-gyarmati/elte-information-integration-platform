@@ -13,8 +13,8 @@ public class LectureLabPrerequisite
     public int PrerequisiteId { get; set; }
 
     [ForeignKey("LectureLabId")]
-    public LectureLab LectureLab { get; set; } = null!;
+    public LectureLab LectureLab { get; set; }
 
     [ForeignKey("PrerequisiteId")]
-    public LectureLab Prerequisite { get; set; } = null!;
+    public LectureLab Prerequisite { get; set; }
 }

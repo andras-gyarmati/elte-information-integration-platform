@@ -12,28 +12,28 @@ public class User
     public bool IsDeleted { get; set; }
 
     [MaxLength(255)]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
     [MaxLength(255)]
-    public string Email { get; set; } = null!;
+    public string Email { get; set; }
 
     [MaxLength(255)]
-    public string Role { get; set; } = null!;
+    public string Role { get; set; }
 
-    public int UniversityId { get; set; }
+    public int? UniversityId { get; set; }
 
     [ForeignKey("UniversityId")]
-    public University University { get; set; } = null!;
+    public University University { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]
     public string CreatedBy { get; set; }
 
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [MaxLength(255)]
     public string ModifiedBy { get; set; }
 
-    public ICollection<UserCompletedRequirement> CompletedRequirements { get; set; } = new HashSet<UserCompletedRequirement>();
+    public ICollection<UserCompletedRequirement> CompletedRequirements { get; set; }
 }

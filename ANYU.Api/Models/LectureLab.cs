@@ -12,10 +12,10 @@ public class LectureLab
     public int CourseInstanceId { get; set; }
 
     [MaxLength(100)]
-    public string Type { get; set; } = null!;
+    public string Type { get; set; }
 
     [MaxLength(100)]
-    public string Code { get; set; } = null!;
+    public string Code { get; set; }
 
     public DateTime StartDate { get; set; }
 
@@ -24,25 +24,25 @@ public class LectureLab
     public int TeacherId { get; set; }
 
     [MaxLength(255)]
-    public string Location { get; set; } = null!;
+    public string Location { get; set; }
 
     [MaxLength(1000)]
-    public string Description { get; set; } = null!;
+    public string Description { get; set; }
 
     [ForeignKey("CourseInstanceId")]
-    public CourseInstance CourseInstance { get; set; } = null!;
+    public CourseInstance CourseInstance { get; set; }
 
     [ForeignKey("TeacherId")]
-    public User Teacher { get; set; } = null!;
+    public User Teacher { get; set; }
 
-    public ICollection<LectureLabPrerequisite> Prerequisites { get; set; } = new HashSet<LectureLabPrerequisite>();
+    public ICollection<LectureLabPrerequisite> Prerequisites { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]
     public string CreatedBy { get; set; }
 
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [MaxLength(255)]
     public string ModifiedBy { get; set; }

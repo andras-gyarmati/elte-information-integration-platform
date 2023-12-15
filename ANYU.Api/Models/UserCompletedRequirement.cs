@@ -13,8 +13,8 @@ public class UserCompletedRequirement
     public int RequirementId { get; set; }
 
     [ForeignKey("UserId")]
-    public User User { get; set; } = null!;
+    public User User { get; set; }
 
     [ForeignKey("RequirementId")]
-    public PassingRequirement PassingRequirement { get; set; } = null!;
+    public PassingRequirement PassingRequirement { get; set; }
 }

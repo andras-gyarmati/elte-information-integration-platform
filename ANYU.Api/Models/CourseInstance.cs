@@ -14,22 +14,22 @@ public class CourseInstance
     public int SemesterId { get; set; }
 
     [MaxLength(1000)]
-    public string Description { get; set; } = null!;
+    public string Description { get; set; }
 
     [ForeignKey("CourseId")]
-    public Course Course { get; set; } = null!;
+    public Course Course { get; set; }
 
     [ForeignKey("SemesterId")]
-    public Semester Semester { get; set; } = null!;
+    public Semester Semester { get; set; }
 
-    public ICollection<LectureLab> LectureLabs { get; set; } = new HashSet<LectureLab>();
+    public ICollection<LectureLab> LectureLabs { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]
     public string CreatedBy { get; set; }
 
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     [MaxLength(255)]
     public string ModifiedBy { get; set; }

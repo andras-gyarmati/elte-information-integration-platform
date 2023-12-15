@@ -7,7 +7,9 @@ namespace ANYU.Api.Models;
 public class User
 {
     [Key]
-    public int Id { get; set; }
+    public int UserId { get; set; }
+
+    public bool IsDeleted { get; set; }
 
     [MaxLength(255)]
     public string Name { get; set; } = null!;
@@ -15,5 +17,23 @@ public class User
     [MaxLength(255)]
     public string Email { get; set; } = null!;
 
+    [MaxLength(255)]
+    public string Role { get; set; } = null!;
+
+    public int UniversityId { get; set; }
+
+    [ForeignKey("UniversityId")]
+    public University University { get; set; } = null!;
+
     public DateTime CreatedAt { get; set; }
+
+    [MaxLength(255)]
+    public string CreatedBy { get; set; }
+
+    public DateTime ModifiedAt { get; set; }
+
+    [MaxLength(255)]
+    public string ModifiedBy { get; set; }
+
+    public ICollection<UserCompletedRequirement> CompletedRequirements { get; set; } = new HashSet<UserCompletedRequirement>();
 }

@@ -1,9 +1,11 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.UserSecrets;
+using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 
 namespace ANYU.Api;
@@ -24,6 +26,20 @@ public class Program
         // Add Environment Variables to the configuration
         builder.Configuration.AddEnvironmentVariables();
 
+        // Add Auth
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApi(options =>
+            {
+                builder.Configuration.Bind("AzureAd", options);
+                options.TokenValidationParameters.NameClaimType = "name";
+            }, options => { builder.Configuration.Bind("AzureAd", options); });
+
+        builder.Services.AddAuthorization(config =>
+        {
+            config.AddPolicy("AuthZPolicy", policyBuilder =>
+                policyBuilder.Requirements.Add(new ScopeAuthorizationRequirement() { RequiredScopesConfigurationKey = $"AzureAd:Scopes" }));
+        });
+        
         // Add MediatR
         builder.Services.AddMediatR(typeof(Program));
 
@@ -45,6 +61,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
 
         // Add Swagger
+        /*
         builder.Services.AddSwaggerGen(options =>
         {
             options.AddSecurityDefinition("Bearer",
@@ -76,6 +93,46 @@ public class Program
                 }
             });
         });
+        */
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.OAuth2,
+                Flows = new OpenApiOAuthFlows()
+                {
+                    Implicit = new OpenApiOAuthFlow()
+                    {
+                        AuthorizationUrl = new Uri("https://login.microsoftonline.com/0133bb48-f790-4560-a64d-ac46a472fbbc/oauth2/v2.0/authorize"),
+                        TokenUrl = new Uri("https://login.microsoftonline.com/0133bb48-f790-4560-a64d-ac46a472fbbc/oauth2/v2.0/token"),
+                        Scopes = new Dictionary<string, string>
+                        {
+                            {
+                                "api://cd6489d0-8e19-4b37-b8a4-5d3efe281fe0/ANYU-Api.Access",
+                                "Access ANYU-Api"
+                            }
+                        }
+                    }
+                }
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "oauth2"
+                        },
+                        Scheme = "oauth2",
+                        Name = "oauth2",
+                        In = ParameterLocation.Header
+                    },
+                    new List<string>()
+                }
+            });
+        });
 
         // Add CORS
         const string anyuCorsPolicy = "anyu-cors-policy";
@@ -92,15 +149,19 @@ public class Program
                 });
         });
 
-        // Add Authorization
-        builder.Services.AddAuthorization();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         // if (app.Environment.IsDevelopment())
         // {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>
+            {
+                options.OAuthAppName("Swagger Client");
+                options.OAuthClientId("cd6489d0-8e19-4b37-b8a4-5d3efe281fe0");
+                options.OAuthClientSecret("pmK8Q~w637oZlluEwMkC5YKWvlQ_ONhysDbw-by~");
+                options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+            });
         // }
         using (var scope = app.Services.CreateScope())
         {

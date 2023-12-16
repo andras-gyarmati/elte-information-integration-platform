@@ -11,8 +11,8 @@ namespace ANYU.Api.Controllers;
 // todo: move to separate files
 // users
 [ApiController]
-// [Authorize]
-[AllowAnonymous]
+[Authorize(Policy = "AuthZPolicy")]
+// [AllowAnonymous]
 [Route("[controller]")]
 public class UsersController : Controller
 {

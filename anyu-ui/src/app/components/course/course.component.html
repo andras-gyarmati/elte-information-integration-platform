@@ -1,3 +1,18 @@
+<!--example data:-->
+<!--"name": "Halado Szofttech",-->
+<!--"code": "IP18-HSZT",-->
+<!--"category": "Mandatory",-->
+<!--"credit": 5,-->
+<!--"description": "Best ELTE course",-->
+<!--"startDate": "2023-12-16T10:51:29.9841605",-->
+<!--"endDate": "2023-12-16T10:51:29.9842778",-->
+<!--"instanceDescription": "Description 1"-->
 <div>
-    <h1>{{course?.name}}</h1>
+  <h1>{{ course?.name }} <span *ngIf="course?.code">({{ course?.code }})</span></h1>
+  <p>{{ course?.description }}</p>
+  <p>{{ course?.category }}</p>
+  <p>{{ course?.credit }}</p>
+  <p>{{ course?.startDate | date }}</p>
+  <p>{{ course?.endDate | date }}</p>
+  <p>{{ course?.instanceDescription }}</p>
 </div>

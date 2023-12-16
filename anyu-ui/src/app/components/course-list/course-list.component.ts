@@ -16,22 +16,21 @@ export class CourseListComponent implements OnInit, AfterViewInit {
   public displayedColumns: string[] = ['name', 'code', 'category', 'credit', 'description'];
   public dataSource = new MatTableDataSource<Course>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  public length = 50;
-  public pageSize = 10;
-  public pageIndex = 0;
   public pageSizeOptions = [5, 10, 25];
   public hidePageSize = false;
   public showPageSizeOptions = true;
   public showFirstLastButtons = true;
   public disabled = false;
-  public pageEvent: PageEvent;
+  public pageEvent: PageEvent = {
+    pageIndex: 0,
+    pageSize: 10,
+    length: 0
+  };
 
   constructor(private courseService: CourseService) {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
   async ngOnInit(): Promise<void> {
@@ -40,19 +39,24 @@ export class CourseListComponent implements OnInit, AfterViewInit {
 
   async getCourses(): Promise<void> {
     try {
-      const coursesResponse = await this.courseService.getPagedList('', this.pageIndex + 1, this.pageSize);
+      const coursesResponse = await this.courseService.getPagedList('', this.pageEvent.pageIndex + 1, this.pageEvent.pageSize);
       this.courses = coursesResponse?.value;
       this.dataSource = new MatTableDataSource<Course>(this.courses);
+      this.pageEvent = {
+        pageIndex: (coursesResponse?.currentPage ?? 1) - 1,
+        pageSize: Math.max(coursesResponse?.currentPageResults ?? this.pageEvent.pageSize, this.pageEvent.pageSize) ?? 10,
+        length: coursesResponse?.totalResults ?? 0
+      };
     } catch (e) {
       console.log(e);
     }
   }
 
-  handlePageEvent(e: PageEvent) {
-    this.pageEvent = e;
-    this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
+  handlePageEvent(event: PageEvent) {
+    if (this.pageEvent.pageSize != event.pageSize) {
+      event.pageIndex = 0;
+    }
+    this.pageEvent = event;
     this.getCourses();
   }
 

@@ -23,6 +23,12 @@ public class CourseResponse
     public int Credit { get; set; }
 
     public string Description { get; set; }
+
+    public DateTime StartDate { get; set; }
+
+    public DateTime EndDate { get; set; }
+
+    public string InstanceDescription { get; set; }
 }
 
 // course instances

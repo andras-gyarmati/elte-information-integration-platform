@@ -10,10 +10,21 @@ public class PassingRequirement
     public int RequirementId { get; set; }
 
     [MaxLength(100)]
+    public string Name { get; set; }
+
+    [MaxLength(100)]
     public string Type { get; set; }
 
     [MaxLength(1000)]
     public string Description { get; set; }
+
+    public DateTime DueDate { get; set; }
+
+    public int Score { get; set; }
+
+    public int MaxScore { get; set; }
+
+    public int Weight { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

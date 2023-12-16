@@ -38,11 +38,13 @@ public class AnyuDbContext : DbContext
         modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
         modelBuilder.Entity<Course>().HasIndex(c => c.Code).IsUnique();
 
+        modelBuilder.Entity<UserCourseData>().HasOne(ucd => ucd.LectureLab).WithMany(ll => ll.UserCourseData).HasForeignKey(ucd => ucd.LectureLabId).OnDelete(DeleteBehavior.Restrict);
+
         // Composite keys
         modelBuilder.Entity<LectureLabPrerequisite>().HasKey(llp => new { llp.LectureLabId, llp.PrerequisiteId });
         modelBuilder.Entity<UniversityRequirementCourse>().HasKey(urc => new { urc.RequirementId, urc.CourseId });
         modelBuilder.Entity<UserCompletedRequirement>().HasKey(ucr => new { ucr.UserId, ucr.RequirementId });
-        modelBuilder.Entity<UserCourseData>().HasKey(ucd => new { ucd.UserId, ucd.CourseInstanceId });
+        modelBuilder.Entity<UserCourseData>().HasKey(ucd => new { ucd.UserId, ucd.LectureLabId });
 
         // One-to-many relationships
         modelBuilder.Entity<User>().HasOne(u => u.University).WithMany(uni => uni.Users).HasForeignKey(u => u.UniversityId);

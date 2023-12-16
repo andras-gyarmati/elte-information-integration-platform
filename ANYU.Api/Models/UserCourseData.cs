@@ -8,7 +8,7 @@ public class UserCourseData
 {
     public int UserId { get; set; }
 
-    public int CourseInstanceId { get; set; }
+    public int LectureLabId { get; set; }
 
     [MaxLength(100)]
     public string Grade { get; set; }
@@ -16,8 +16,8 @@ public class UserCourseData
     [ForeignKey("UserId")]
     public User User { get; set; }
 
-    [ForeignKey("CourseInstanceId")]
-    public CourseInstance CourseInstance { get; set; }
+    [ForeignKey("LectureLabId")]
+    public LectureLab LectureLab { get; set; }
 
     public List<UserCompletedRequirement> CompletedRequirements { get; set; }
 

@@ -37,6 +37,8 @@ public class LectureLab
 
     public ICollection<LectureLabPrerequisite> Prerequisites { get; set; }
 
+    public ICollection<UserCourseData> UserCourseData { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     [MaxLength(255)]

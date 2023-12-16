@@ -4,7 +4,7 @@ using MediatR;
 
 namespace ANYU.Api.Requests;
 
-public class GetUsersRequest : IRequest<PagedListResult<UserResponse>>
+public class GetCoursesRequest : IRequest<PagedListResult<CourseResponse>>
 {
     public string Filtering { get; set; }
 

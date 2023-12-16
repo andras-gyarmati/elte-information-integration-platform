@@ -39,7 +39,7 @@ public class Program
             config.AddPolicy("AuthZPolicy", policyBuilder =>
                 policyBuilder.Requirements.Add(new ScopeAuthorizationRequirement() { RequiredScopesConfigurationKey = $"AzureAd:Scopes" }));
         });
-        
+
         // Add MediatR
         builder.Services.AddMediatR(typeof(Program));
 
@@ -67,7 +67,7 @@ public class Program
             options.AddSecurityDefinition("Bearer",
                 new OpenApiSecurityScheme
                 {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
                       Enter 'Bearer' [space] and then your token in the text input below.
                       \r\n\r\nExample: 'Bearer 12345abcdef'",
                     Name = "Authorization",
@@ -151,6 +151,7 @@ public class Program
 
         var app = builder.Build();
 
+        var oauthClientSecret = builder.Configuration.GetValue<string>("OAuthClientSecret");
         // Configure the HTTP request pipeline.
         // if (app.Environment.IsDevelopment())
         // {
@@ -159,7 +160,7 @@ public class Program
             {
                 options.OAuthAppName("Swagger Client");
                 options.OAuthClientId("cd6489d0-8e19-4b37-b8a4-5d3efe281fe0");
-                options.OAuthClientSecret("pmK8Q~w637oZlluEwMkC5YKWvlQ_ONhysDbw-by~");
+                options.OAuthClientSecret(oauthClientSecret);
                 options.OAuthUseBasicAuthenticationWithAccessCodeGrant();
             });
         // }

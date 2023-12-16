@@ -36,6 +36,7 @@ public class AnyuDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
+        modelBuilder.Entity<Course>().HasIndex(c => c.Code).IsUnique();
 
         // Composite keys
         modelBuilder.Entity<LectureLabPrerequisite>().HasKey(llp => new { llp.LectureLabId, llp.PrerequisiteId });

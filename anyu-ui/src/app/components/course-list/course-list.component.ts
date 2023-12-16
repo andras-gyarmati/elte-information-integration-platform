@@ -20,7 +20,6 @@ export class CourseListComponent implements OnInit, AfterViewInit {
   public hidePageSize = false;
   public showPageSizeOptions = true;
   public showFirstLastButtons = true;
-  public disabled = false;
   public pageEvent: PageEvent = {
     pageIndex: 0,
     pageSize: 10,
@@ -58,11 +57,5 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
     this.pageEvent = event;
     this.getCourses();
-  }
-
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    if (setPageSizeOptionsInput) {
-      this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-    }
   }
 }

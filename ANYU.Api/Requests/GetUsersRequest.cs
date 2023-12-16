@@ -2,7 +2,7 @@
 using ANYU.Api.Responses;
 using MediatR;
 
-namespace ANYU.Api.Services;
+namespace ANYU.Api.Requests;
 
 // todo: move to separate files
 // users
@@ -23,6 +23,11 @@ public class GetCoursesRequest : IRequest<PagedListResult<CourseResponse>>
     public Sorting Sorting { get; set; }
 
     public Pagination Pagination { get; set; }
+}
+
+public class GetCourseRequest : IRequest<Result<CourseResponse>>
+{
+    public string Code { get; set; }
 }
 
 // course instances

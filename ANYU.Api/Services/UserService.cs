@@ -1,6 +1,7 @@
 ﻿using ANYU.Api.Abstraction;
 using ANYU.Api.Extensions;
 using ANYU.Api.Models;
+using ANYU.Api.Requests;
 using ANYU.Api.Responses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -61,7 +62,7 @@ public class UserService : IRequestHandler<GetUsersRequest, PagedListResult<User
 }
 
 // courses
-public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<CourseResponse>>
+public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<CourseResponse>>, IRequestHandler<GetCourseRequest, Result<CourseResponse>>
 {
     private readonly AnyuDbContext _context;
     private readonly ILogger<CourseService> _logger;
@@ -102,6 +103,35 @@ public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<
         catch (Exception e)
         {
             return PagedListResult<CourseResponse>.Failure(e.Message);
+        }
+    }
+
+    public async Task<Result<CourseResponse>> Handle(GetCourseRequest request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var course = await _context.Courses
+                .AsQueryable()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(course => course.Code == request.Code, cancellationToken);
+            if (course == null)
+            {
+                return Result<CourseResponse>.Failure("Course not found");
+            }
+            var courseResponse = new CourseResponse
+            {
+                CourseId = course.CourseId,
+                Name = course.Name,
+                Code = course.Code,
+                Category = course.Category,
+                Credit = course.Credit,
+                Description = course.Description
+            };
+            return Result<CourseResponse>.Ok(courseResponse);
+        }
+        catch (Exception e)
+        {
+            return Result<CourseResponse>.Failure(e.Message);
         }
     }
 

@@ -3,6 +3,7 @@ import { CourseService } from "../../services/course.service";
 import { Course } from "../../models/course";
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-course-list',
@@ -26,7 +27,7 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     length: 0
   };
 
-  constructor(private courseService: CourseService) {
+  constructor(private courseService: CourseService, private router: Router) {
   }
 
   ngAfterViewInit() {
@@ -57,5 +58,10 @@ export class CourseListComponent implements OnInit, AfterViewInit {
     }
     this.pageEvent = event;
     this.getCourses();
+  }
+
+  openCourse(code: string) {
+    console.log(code);
+    //this.router.navigate([`${code}`]); // nem működik!!! (Cannot match any routes. URL Segment:...)
   }
 }

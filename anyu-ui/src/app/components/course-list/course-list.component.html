@@ -1,27 +1,27 @@
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name</th>
-    <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+    <td mat-cell *matCellDef="let element" (click)="openCourse(element.code)"> {{ element.name }}</td>
   </ng-container>
 
   <ng-container matColumnDef="code">
     <th mat-header-cell *matHeaderCellDef> Code</th>
-    <td mat-cell *matCellDef="let element"> {{ element.code }}</td>
+    <td mat-cell *matCellDef="let element" (click)="openCourse(element.code)"> {{ element.code }}</td>
   </ng-container>
 
   <ng-container matColumnDef="category">
     <th mat-header-cell *matHeaderCellDef> Category</th>
-    <td mat-cell *matCellDef="let element"> {{ element.category }}</td>
+    <td mat-cell *matCellDef="let element" (click)="openCourse(element.code)"> {{ element.category }}</td>
   </ng-container>
 
   <ng-container matColumnDef="credit">
     <th mat-header-cell *matHeaderCellDef> Credit</th>
-    <td mat-cell *matCellDef="let element"> {{ element.credit }}</td>
+    <td mat-cell *matCellDef="let element" (click)="openCourse(element.code)"> {{ element.credit }}</td>
   </ng-container>
 
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description</th>
-    <td mat-cell *matCellDef="let element"> {{ element.description }}</td>
+    <td mat-cell *matCellDef="let element" (click)="openCourse(element.code)"> {{ element.description }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

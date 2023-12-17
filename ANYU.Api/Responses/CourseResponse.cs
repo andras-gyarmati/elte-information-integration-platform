@@ -19,4 +19,7 @@ public class CourseResponse
     public DateTime EndDate { get; set; }
 
     public string InstanceDescription { get; set; }
+
+    public List<LectureLabResponse> Lectures { get; set; }
+    public List<LectureLabResponse> Labs { get; set; }
 }

@@ -58,7 +58,7 @@ public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<
         {
             var courseInstance = await _context.CourseInstances
                 .Include(x => x.Course)
-                .Include(x => x.Semester)
+                .Include(x => x.Semester).Include(courseInstance => courseInstance.LectureLabs).ThenInclude(lectureLab => lectureLab.Teacher)
                 .OrderBy(x => x.Semester.StartDate)
                 .AsQueryable()
                 .AsNoTracking()
@@ -77,7 +77,29 @@ public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<
                 Description = courseInstance.Course.Description,
                 InstanceDescription = courseInstance.Description,
                 StartDate = courseInstance.Semester.StartDate,
-                EndDate = courseInstance.Semester.EndDate
+                EndDate = courseInstance.Semester.EndDate,
+                Lectures = courseInstance.LectureLabs.Where(x => x.Type == "Lecture").Select(lectureLab => new LectureLabResponse
+                {
+                    LectureLabId = lectureLab.LectureLabId,
+                    Type = lectureLab.Type,
+                    Code = lectureLab.Code,
+                    StartDate = lectureLab.StartDate,
+                    EndDate = lectureLab.EndDate,
+                    Teacher = lectureLab.Teacher.Name,
+                    Location = lectureLab.Location,
+                    Description = lectureLab.Description,
+                }).ToList(),
+                Labs = courseInstance.LectureLabs.Where(x => x.Type == "Lab").Select(lectureLab => new LectureLabResponse
+                {
+                    LectureLabId = lectureLab.LectureLabId,
+                    Type = lectureLab.Type,
+                    Code = lectureLab.Code,
+                    StartDate = lectureLab.StartDate,
+                    EndDate = lectureLab.EndDate,
+                    Teacher = lectureLab.Teacher.Name,
+                    Location = lectureLab.Location,
+                    Description = lectureLab.Description,
+                }).ToList()
             };
             return Result<CourseResponse>.Ok(courseResponse);
         }

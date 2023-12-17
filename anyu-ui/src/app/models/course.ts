@@ -1,3 +1,14 @@
+class LectureLab {
+  lectureLabId: number;
+  type: string;
+  code: string;
+  startDate: Date;
+  endDate: Date;
+  teacher: string;
+  location: string;
+  description: string;
+}
+
 export class Course {
   courseId: number;
   name: string;
@@ -8,8 +19,6 @@ export class Course {
   instanceDescription: string;
   startDate: Date;
   endDate: Date;
-
-  // constructor(name: string) {
-  //   this.name = name;
-  // }
+  lectures: LectureLab[];
+  labs: LectureLab[];
 }

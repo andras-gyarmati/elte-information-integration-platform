@@ -8,10 +8,12 @@
     <mat-card-content class="content">
       <div class="prop"><span class="label">Category</span><span class="value">{{ course?.category }}</span></div>
       <div class="prop"><span class="label">Credit</span><span class="value">{{ course?.credit }}</span></div>
-      <div class="prop"><span class="label">Start Date</span><span class="value">{{ course?.startDate | date }}</span></div>
+      <div class="prop"><span class="label">Start Date</span><span class="value">{{ course?.startDate | date }}</span>
+      </div>
       <div class="prop"><span class="label">End Date</span><span class="value">{{ course?.endDate | date }}</span></div>
       <div class="prop"><span class="label">Description</span><span class="value">{{ course?.description }}</span></div>
-      <div class="prop"><span class="label">Instance Description</span><span class="value">{{ course?.instanceDescription }}</span></div>
+      <div class="prop"><span class="label">Instance Description</span><span
+        class="value">{{ course?.instanceDescription }}</span></div>
     </mat-card-content>
   </mat-card>
 
@@ -19,9 +21,21 @@
     <div class="lecture-lab-container">
       <div class="lectures">
         <h2>Lectures</h2>
+        <div>
+          <div *ngFor="let lecture of course?.lectures">
+            <h4>{{ lecture.code }}</h4>
+            <p>{{ lecture.description }}</p>
+          </div>
+        </div>
       </div>
       <div class="labs">
         <h2>Labs</h2>
+        <div>
+          <div *ngFor="let lecture of course?.labs">
+            <h4>{{ lecture.code }}</h4>
+            <p>{{ lecture.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </mat-card>

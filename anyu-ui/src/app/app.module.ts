@@ -11,6 +11,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { NgOptimizedImage } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -28,7 +30,9 @@ import { MatTabsModule } from "@angular/material/tabs";
     CourseListComponent,
     NgOptimizedImage,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: []
 })

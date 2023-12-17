@@ -33,6 +33,11 @@ public class AnyuDbContext : DbContext
 
     public DbSet<UserCompletedRequirement> UserCompletedRequirements { get; set; }
 
+    public DbSet<Topic> Topics { get; set; }
+
+    public DbSet<Comment> Comments { get; set; }
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
@@ -48,6 +53,7 @@ public class AnyuDbContext : DbContext
         modelBuilder.Entity<UserLectureLabData>().HasKey(ucd => new { ucd.UserId, ucd.LectureLabId });
 
         // One-to-many relationships
+        modelBuilder.Entity<Comment>().HasOne(c => c.Topic).WithMany(t => t.Comments).HasForeignKey(c => c.TopicId);
         modelBuilder.Entity<User>().HasOne(u => u.University).WithMany(uni => uni.Users).HasForeignKey(u => u.UniversityId);
         modelBuilder.Entity<CourseInstance>().HasOne(ci => ci.Course).WithMany(c => c.CourseInstances).HasForeignKey(ci => ci.CourseId);
         modelBuilder.Entity<CourseInstance>().HasOne(ci => ci.Semester).WithMany(s => s.CourseInstances).HasForeignKey(ci => ci.SemesterId);

@@ -44,37 +44,70 @@
 
   <mat-card>
     <div class="requirements-container">
-        <h2>Requirements</h2>
-        <div>
-          <h4>Grading</h4>
-          <table>
-            <tr>
-              <td>0</td> -
-              <td>{{points[0] - 1}}</td> :
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>{{points[0]}}</td> -
-              <td>{{points[1] - 1}}</td> :
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>{{points[1]}}</td> -
-              <td>{{points[2] - 1}}</td> :
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>{{points[2]}}</td> -
-              <td>{{points[3] - 1}}</td> :
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>{{points[3]}}</td> -
-              <td>{{points[4]}}</td> :
-              <td>5</td>
-            </tr>
-          </table>
-        </div>
+      <h2>Requirements</h2>
+      <div class="grading">
+        <h4>Exams</h4>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Max point</th>
+            <th>Min point</th>
+          </tr>
+          <tr>
+            <td>1. zh</td>
+            <td>written</td>
+            <td>2023. 10. 28.</td>
+            <td>100</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>2. zh</td>
+            <td>written</td>
+            <td>2023. 12. 08.</td>
+            <td>100</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>Exam</td>
+            <td>written</td>
+            <td>2023. 12. 18.</td>
+            <td>20</td>
+            <td>0</td>
+          </tr>
+        </table>
+      </div>
+      <div class="grading">
+        <h4>Grading</h4>
+        <table>
+          <tr>
+            <td>0</td> -
+            <td>{{points[0] - 1}}</td> :
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>{{points[0]}}</td> -
+            <td>{{points[1] - 1}}</td> :
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>{{points[1]}}</td> -
+            <td>{{points[2] - 1}}</td> :
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>{{points[2]}}</td> -
+            <td>{{points[3] - 1}}</td> :
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>{{points[3]}}</td> -
+            <td>{{points[4]}}</td> :
+            <td>5</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </mat-card>
 

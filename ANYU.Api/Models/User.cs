@@ -36,4 +36,6 @@ public class User
     public string ModifiedBy { get; set; }
 
     public ICollection<UserCompletedRequirement> CompletedRequirements { get; set; }
+
+    public ICollection<UserLectureLabData> UserLectureLabData { get; set; }
 }

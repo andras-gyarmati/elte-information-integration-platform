@@ -25,7 +25,7 @@ public class AnyuDbContext : DbContext
 
     public DbSet<UniversityRequirement> UniversityRequirements { get; set; }
 
-    public DbSet<UserCourseData> UserCourseData { get; set; }
+    public DbSet<UserLectureLabData> UserLectureLabData { get; set; }
 
     public DbSet<LectureLabPrerequisite> LectureLabPrerequisites { get; set; }
 
@@ -38,13 +38,14 @@ public class AnyuDbContext : DbContext
         modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDeleted);
         modelBuilder.Entity<Course>().HasIndex(c => c.Code).IsUnique();
 
-        modelBuilder.Entity<UserCourseData>().HasOne(ucd => ucd.LectureLab).WithMany(ll => ll.UserCourseData).HasForeignKey(ucd => ucd.LectureLabId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<UserLectureLabData>().HasOne(ucd => ucd.LectureLab).WithMany(ll => ll.UserLectureLabData).HasForeignKey(ucd => ucd.LectureLabId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<UserLectureLabData>().HasOne(ucd => ucd.User).WithMany(u => u.UserLectureLabData).HasForeignKey(ucd => ucd.LectureLabId).OnDelete(DeleteBehavior.Restrict);
 
         // Composite keys
         modelBuilder.Entity<LectureLabPrerequisite>().HasKey(llp => new { llp.LectureLabId, llp.PrerequisiteId });
         modelBuilder.Entity<UniversityRequirementCourse>().HasKey(urc => new { urc.RequirementId, urc.CourseId });
         modelBuilder.Entity<UserCompletedRequirement>().HasKey(ucr => new { ucr.UserId, ucr.RequirementId });
-        modelBuilder.Entity<UserCourseData>().HasKey(ucd => new { ucd.UserId, ucd.LectureLabId });
+        modelBuilder.Entity<UserLectureLabData>().HasKey(ucd => new { ucd.UserId, ucd.LectureLabId });
 
         // One-to-many relationships
         modelBuilder.Entity<User>().HasOne(u => u.University).WithMany(uni => uni.Users).HasForeignKey(u => u.UniversityId);

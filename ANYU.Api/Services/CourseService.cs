@@ -77,8 +77,7 @@ public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<
                 Description = courseInstance.Course.Description,
                 InstanceDescription = courseInstance.Description,
                 StartDate = courseInstance.Semester.StartDate,
-                EndDate = courseInstance.Semester.EndDate,
-
+                EndDate = courseInstance.Semester.EndDate
             };
             return Result<CourseResponse>.Ok(courseResponse);
         }

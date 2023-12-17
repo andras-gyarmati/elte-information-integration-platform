@@ -4,6 +4,7 @@ using ANYU.Api;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ANYU.Api.Migrations
 {
     [DbContext(typeof(AnyuDbContext))]
-    partial class AnyuDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231217084715_AddCourseDataNavigationPropertyToUser")]
+    partial class AddCourseDataNavigationPropertyToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,22 +434,22 @@ namespace ANYU.Api.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(1);
 
-                    b.Property<int?>("UserLectureLabDataLectureLabId")
+                    b.Property<int?>("UserCourseDataLectureLabId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserLectureLabDataUserId")
+                    b.Property<int?>("UserCourseDataUserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserId", "RequirementId");
 
                     b.HasIndex("RequirementId");
 
-                    b.HasIndex("UserLectureLabDataUserId", "UserLectureLabDataLectureLabId");
+                    b.HasIndex("UserCourseDataUserId", "UserCourseDataLectureLabId");
 
                     b.ToTable("UserCompletedRequirement");
                 });
 
-            modelBuilder.Entity("ANYU.Api.Models.UserLectureLabData", b =>
+            modelBuilder.Entity("ANYU.Api.Models.UserCourseData", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -476,7 +479,7 @@ namespace ANYU.Api.Migrations
 
                     b.HasIndex("LectureLabId");
 
-                    b.ToTable("UserLectureLabData");
+                    b.ToTable("UserCourseData");
                 });
 
             modelBuilder.Entity("ANYU.Api.Models.CourseInstance", b =>
@@ -589,16 +592,16 @@ namespace ANYU.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ANYU.Api.Models.UserLectureLabData", null)
+                    b.HasOne("ANYU.Api.Models.UserCourseData", null)
                         .WithMany("CompletedRequirements")
-                        .HasForeignKey("UserLectureLabDataUserId", "UserLectureLabDataLectureLabId");
+                        .HasForeignKey("UserCourseDataUserId", "UserCourseDataLectureLabId");
 
                     b.Navigation("PassingRequirement");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ANYU.Api.Models.UserLectureLabData", b =>
+            modelBuilder.Entity("ANYU.Api.Models.UserCourseData", b =>
                 {
                     b.HasOne("ANYU.Api.Models.LectureLab", "LectureLab")
                         .WithMany("UserCourseData")
@@ -658,7 +661,7 @@ namespace ANYU.Api.Migrations
                     b.Navigation("UserCourseData");
                 });
 
-            modelBuilder.Entity("ANYU.Api.Models.UserLectureLabData", b =>
+            modelBuilder.Entity("ANYU.Api.Models.UserCourseData", b =>
                 {
                     b.Navigation("CompletedRequirements");
                 });

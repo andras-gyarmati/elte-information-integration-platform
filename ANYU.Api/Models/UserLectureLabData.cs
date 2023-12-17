@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ANYU.Api.Models;
 
-[Table("UserCourseData")]
-public class UserCourseData
+[Table("UserLectureLabData")]
+public class UserLectureLabData
 {
     public int UserId { get; set; }
 

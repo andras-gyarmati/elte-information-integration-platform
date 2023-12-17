@@ -1,18 +1,29 @@
-<!--example data:-->
-<!--"name": "Halado Szofttech",-->
-<!--"code": "IP18-HSZT",-->
-<!--"category": "Mandatory",-->
-<!--"credit": 5,-->
-<!--"description": "Best ELTE course",-->
-<!--"startDate": "2023-12-16T10:51:29.9841605",-->
-<!--"endDate": "2023-12-16T10:51:29.9842778",-->
-<!--"instanceDescription": "Description 1"-->
-<div>
-  <h1>{{ course?.name }} <span *ngIf="course?.code">({{ course?.code }})</span></h1>
-  <p>{{ course?.description }}</p>
-  <p>{{ course?.category }}</p>
-  <p>{{ course?.credit }}</p>
-  <p>{{ course?.startDate | date }}</p>
-  <p>{{ course?.endDate | date }}</p>
-  <p>{{ course?.instanceDescription }}</p>
+<div class="component-container">
+
+  <mat-card>
+    <mat-card-title>
+      <h1 class="title">{{ course?.name }} <span *ngIf="course?.code">({{ course?.code }})</span></h1>
+    </mat-card-title>
+    <mat-card-subtitle class="sub-title">{{ course?.description }}</mat-card-subtitle>
+    <mat-card-content class="content">
+      <div class="prop"><span class="label">Category</span><span class="value">{{ course?.category }}</span></div>
+      <div class="prop"><span class="label">Credit</span><span class="value">{{ course?.credit }}</span></div>
+      <div class="prop"><span class="label">Start Date</span><span class="value">{{ course?.startDate | date }}</span></div>
+      <div class="prop"><span class="label">End Date</span><span class="value">{{ course?.endDate | date }}</span></div>
+      <div class="prop"><span class="label">Description</span><span class="value">{{ course?.description }}</span></div>
+      <div class="prop"><span class="label">Instance Description</span><span class="value">{{ course?.instanceDescription }}</span></div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <div class="lecture-lab-container">
+      <div class="lectures">
+        <h2>Lectures</h2>
+      </div>
+      <div class="labs">
+        <h2>Labs</h2>
+      </div>
+    </div>
+  </mat-card>
+
 </div>

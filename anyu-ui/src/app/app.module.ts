@@ -9,6 +9,8 @@ import { CourseComponent } from './components/course/course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { NgOptimizedImage } from "@angular/common";
+import { MatCardModule } from "@angular/material/card";
+import { MatTabsModule } from "@angular/material/tabs";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -24,7 +26,9 @@ import { NgOptimizedImage } from "@angular/common";
     BrowserAnimationsModule,
     MatToolbarModule,
     CourseListComponent,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatCardModule,
+    MatTabsModule
   ],
   providers: []
 })

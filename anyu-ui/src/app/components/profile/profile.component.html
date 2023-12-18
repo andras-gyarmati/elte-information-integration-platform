@@ -1,6 +1,15 @@
-<div>
-    <p><strong>First Name: </strong> {{profile?.givenName}}</p>
-    <p><strong>Last Name: </strong> {{profile?.surname}}</p>
-    <p><strong>Email: </strong> {{profile?.userPrincipalName}}</p>
-    <p><strong>Id: </strong> {{profile?.id}}</p>
+<mat-progress-bar *ngIf="!profile" mode="indeterminate"></mat-progress-bar>
+
+<div *ngIf="profile" class="component-container">
+  <mat-card>
+    <mat-card-title>
+      <h1 class="title">Profile</h1>
+    </mat-card-title>
+    <mat-card-content class="content">
+      <div class="prop"><span class="label">First Name</span><span class="value">{{ profile.givenName }}</span></div>
+      <div class="prop"><span class="label">Last Name</span><span class="value">{{ profile.surname }}</span></div>
+      <div class="prop"><span class="label">Email</span><span class="value">{{ profile.userPrincipalName }}</span></div>
+      <div class="prop"><span class="label">Id</span><span class="value">{{ profile.id }}</span></div>
+    </mat-card-content>
+  </mat-card>
 </div>

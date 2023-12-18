@@ -3,19 +3,22 @@ import { CourseService } from "../../services/course.service";
 import { Course } from "../../models/course";
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [MatTableModule, MatPaginatorModule, MatProgressBarModule, NgIf, RouterLink],
 })
 export class CourseListComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   public courses: Course[] | undefined;
   public displayedColumns: string[] = ['name', 'code', 'category', 'credit', 'description'];
   public dataSource = new MatTableDataSource<Course>();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   public pageSizeOptions = [5, 10, 25];
   public hidePageSize = false;
   public showPageSizeOptions = true;

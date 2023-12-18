@@ -21,6 +21,7 @@ import { FailedComponent } from './components/failed/failed.component';
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation, LogLevel } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfiguration, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalGuardConfiguration, MsalRedirectComponent } from '@azure/msal-angular';
 import { environment } from 'src/environments/environment';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 export function loggerCallback(logLevel: LogLevel, message: string) {
   console.log(message);
@@ -93,7 +94,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
-    MsalModule
+    MsalModule,
+    MatProgressBarModule
   ],
   providers: [
     {

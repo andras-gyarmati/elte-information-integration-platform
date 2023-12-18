@@ -11,7 +11,8 @@ import { filter } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
   loginDisplay = false;
 
-  constructor(private authService: MsalService, private msalBroadcastService: MsalBroadcastService) { }
+  constructor(private authService: MsalService, private msalBroadcastService: MsalBroadcastService) {
+  }
 
   ngOnInit(): void {
     this.msalBroadcastService.msalSubject$
@@ -23,19 +24,16 @@ export class HomeComponent implements OnInit {
         const payload = result.payload as AuthenticationResult;
         this.authService.instance.setActiveAccount(payload.account);
       });
-
     this.msalBroadcastService.inProgress$
       .pipe(
         filter((status: InteractionStatus) => status === InteractionStatus.None)
       )
       .subscribe(() => {
         this.setLoginDisplay();
-      })
-
+      });
   }
 
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
-
 }

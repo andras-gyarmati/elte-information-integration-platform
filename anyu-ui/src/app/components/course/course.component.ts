@@ -20,6 +20,8 @@ export class CourseComponent {
     });
   }
 
+  points = [20, 40, 60, 80, 100];
+
   async getCourse() {
     try {
       const courseResponse = await this.courseService.get(this.courseCode);

@@ -87,7 +87,7 @@ public class CourseService : IRequestHandler<GetCoursesRequest, PagedListResult<
                     EndDate = lectureLab.EndDate,
                     Teacher = lectureLab.Teacher.Name,
                     Location = lectureLab.Location,
-                    Description = lectureLab.Description,
+                    Description = lectureLab.Description
                 }).ToList(),
                 Labs = courseInstance.LectureLabs.Where(x => x.Type == "Lab").Select(lectureLab => new LectureLabResponse
                 {

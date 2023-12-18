@@ -1,1 +1,13 @@
-<p>auth works!</p>
+<button mat-button [routerLink]="['profile']" *ngIf="loginDisplay">
+  <mat-icon>person</mat-icon>Profile
+</button>
+
+<button mat-raised-button class="login-icon" aria-label="Login" *ngIf="!loginDisplay" (click)="login()">
+  <mat-icon>login</mat-icon>Login
+</button>
+
+<button mat-raised-button class="logout-icon" aria-label="Logout" *ngIf="loginDisplay" (click)="logout()">
+  <mat-icon>logout</mat-icon>Logout
+</button>
+
+

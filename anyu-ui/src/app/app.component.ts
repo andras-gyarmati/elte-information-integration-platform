@@ -1,5 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { UserService } from "./services/user.service";
+import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 
 @Component({
@@ -9,18 +8,11 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   title = 'anyu-ui';
+  isIframe = false;
 
-  constructor(private router: Router, private userService: UserService) { // todo: delete, this is just for debug
-    try {
-      userService.getPagedList("", 1, 1).then((res) => {
-        console.log(JSON.stringify(res));
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  constructor(private router: Router) { }
 
   logoClicked() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 }

@@ -1,4 +1,5 @@
-﻿using ANYU.Api.Abstraction;
+﻿using System.Security.Claims;
+using ANYU.Api.Abstraction;
 using ANYU.Api.Extensions;
 using ANYU.Api.Requests;
 using ANYU.Api.Responses;
@@ -9,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ANYU.Api.Controllers;
 
 [ApiController]
-// [Authorize]
-[AllowAnonymous]
+[Authorize(Policy = "AuthZPolicy")]
+// [AllowAnonymous]
 [Route("[controller]")]
 public class CoursesController : Controller
 {

@@ -3,8 +3,10 @@
 <!--    <img class='header-image' ngSrc='logo.svg' alt='anyu-logo' (click)='logoClicked()'>-->
     <span class="header-image" (click)="logoClicked()">ANYU</span>
     <span class='header-spacer'></span>
+    <app-auth/>
   </mat-toolbar>
 </div>
 <div class="router-container">
-  <router-outlet></router-outlet>
+  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+  <router-outlet *ngIf="!isIframe"></router-outlet>
 </div>

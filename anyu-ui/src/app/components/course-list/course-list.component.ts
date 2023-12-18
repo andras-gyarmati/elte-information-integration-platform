@@ -17,6 +17,7 @@ import { NgIf } from "@angular/common";
 export class CourseListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public courses: Course[] | undefined;
+  public errorMessage: string | undefined;
   public displayedColumns: string[] = ['name', 'code', 'category', 'credit', 'description'];
   public dataSource = new MatTableDataSource<Course>();
   public pageSizeOptions = [5, 10, 25];
@@ -49,8 +50,9 @@ export class CourseListComponent implements OnInit, AfterViewInit {
         pageSize: Math.max(coursesResponse?.currentPageResults ?? this.pageEvent.pageSize, this.pageEvent.pageSize) ?? 10,
         length: coursesResponse?.totalResults ?? 0
       };
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
+      this.errorMessage = e?.error?.errorMessage ?? e?.error?.message ?? e?.message ?? e?.error ?? e;
     }
   }
 

@@ -11,6 +11,7 @@ import { Course } from "../../models/course";
 export class CourseComponent {
   private courseCode: number;
   public course: Course | undefined;
+  public errorMessage: string | undefined;
 
   constructor(private route: ActivatedRoute, private courseService: CourseService) {
     this.route.params.subscribe(params => {
@@ -26,8 +27,9 @@ export class CourseComponent {
     try {
       const courseResponse = await this.courseService.get(this.courseCode);
       this.course = courseResponse?.value;
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
+      this.errorMessage = e?.error?.errorMessage ?? e?.error?.message ?? e?.message ?? e?.error ?? e;
     }
   }
 }

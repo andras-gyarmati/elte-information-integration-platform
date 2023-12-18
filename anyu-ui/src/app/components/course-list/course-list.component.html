@@ -1,4 +1,6 @@
-<mat-progress-bar *ngIf="!courses" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="!courses && !errorMessage" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
 <div *ngIf="courses">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">

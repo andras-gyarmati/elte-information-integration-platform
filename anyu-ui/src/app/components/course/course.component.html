@@ -1,20 +1,21 @@
-<mat-progress-bar *ngIf="!course" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="!course && !errorMessage" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
 
 <div *ngIf="course" class="component-container">
   <mat-card>
     <mat-card-title>
-      <h1 class="title">{{ course?.name }} <span *ngIf="course?.code">({{ course?.code }})</span></h1>
+      <h1 class="title">{{ course.name }} <span>({{ course.code }})</span></h1>
     </mat-card-title>
-    <mat-card-subtitle class="sub-title">{{ course?.description }}</mat-card-subtitle>
+    <mat-card-subtitle class="sub-title">{{ course.description }}</mat-card-subtitle>
     <mat-card-content class="content">
-      <div class="prop"><span class="label">Category</span><span class="value">{{ course?.category }}</span></div>
-      <div class="prop"><span class="label">Credit</span><span class="value">{{ course?.credit }}</span></div>
-      <div class="prop"><span class="label">Start Date</span><span class="value">{{ course?.startDate | date }}</span>
+      <div class="prop"><span class="label">Category</span><span class="value">{{ course.category }}</span></div>
+      <div class="prop"><span class="label">Credit</span><span class="value">{{ course.credit }}</span></div>
+      <div class="prop"><span class="label">Start Date</span><span class="value">{{ course.startDate | date }}</span>
       </div>
-      <div class="prop"><span class="label">End Date</span><span class="value">{{ course?.endDate | date }}</span></div>
-      <div class="prop"><span class="label">Description</span><span class="value">{{ course?.description }}</span></div>
+      <div class="prop"><span class="label">End Date</span><span class="value">{{ course.endDate | date }}</span></div>
+      <div class="prop"><span class="label">Description</span><span class="value">{{ course.description }}</span></div>
       <div class="prop"><span class="label">Instance Description</span><span
-        class="value">{{ course?.instanceDescription }}</span></div>
+        class="value">{{ course.instanceDescription }}</span></div>
     </mat-card-content>
   </mat-card>
 
@@ -23,7 +24,7 @@
       <div class="lectures">
         <h2>Lectures</h2>
         <div>
-          <div *ngFor="let lecture of course?.lectures">
+          <div *ngFor="let lecture of course.lectures">
             <h4>{{ lecture.code }}</h4>
             <p>{{ lecture.description }}</p>
           </div>
@@ -32,7 +33,7 @@
       <div class="labs">
         <h2>Labs</h2>
         <div>
-          <div *ngFor="let lecture of course?.labs">
+          <div *ngFor="let lecture of course.labs">
             <h4>{{ lecture.code }}</h4>
             <p>{{ lecture.description }}</p>
           </div>

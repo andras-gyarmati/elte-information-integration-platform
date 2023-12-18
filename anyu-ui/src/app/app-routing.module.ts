@@ -10,7 +10,7 @@ import { FailedComponent } from './components/failed/failed.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/courses', pathMatch: 'full'},
-  {path: 'courses', component: CourseListComponent},
+  {path: 'courses', component: CourseListComponent, canActivate: [MsalGuard]},
   {path: 'courses/:code', component: CourseComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [MsalGuard]},
   // {path: '', component: HomeComponent},
